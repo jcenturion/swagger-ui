@@ -485,36 +485,36 @@ body
 }
 
 
-.opblock-body pre
-{
-    font-size: 12px;
+// .opblock-body pre
+// {
+//     font-size: 12px;
 
-    margin: 0;
-    padding: 10px;
-
-
-    word-wrap: break-word;
-    word-break: break-all;
-    word-break: break-word;
-    hyphens: auto;
-    white-space: pre-wrap;
+//     margin: 0;
+//     padding: 10px;
 
 
-    border-radius: 4px;
-    background: #41444e;
+//     word-wrap: break-word;
+//     word-break: break-all;
+//     word-break: break-word;
+//     hyphens: auto;
+//     white-space: pre-wrap;
 
-    overflow-wrap: break-word;
-    @include text_code(#fff);
-    span
-    {
-        color: #fff !important;
-    }
 
-    .headerline
-    {
-        display: block;
-    }
-}
+//     border-radius: 4px;
+//     background: #41444e;
+
+//     overflow-wrap: break-word;
+//     @include text_code(#fff);
+//     span
+//     {
+//         color: #fff !important;
+//     }
+
+//     .headerline
+//     {
+//         display: block;
+//     }
+// }
 
 .scheme-container
 {

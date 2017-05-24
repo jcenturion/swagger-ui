@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from "react"
 import shallowCompare from "react-addons-shallow-compare"
 import { fromJS, List } from "immutable"
 import { getSampleSchema } from "core/utils"
+import CodeMirror from "react-codemirror"
+
+require("codemirror/mode/javascript/javascript")
+require("codemirror/lib/codemirror.css")
 
 const NOOP = Function.prototype
 
@@ -53,7 +57,7 @@ export default class ParamBody extends Component {
     let { specSelectors, pathMethod, param, isExecute, consumesValue="" } = props
     let parameter = specSelectors ? specSelectors.getParameter(pathMethod, param.get("name")) : {}
     let isXml = /xml/i.test(consumesValue)
-    let paramValue = isXml ? parameter.get("value_xml") : parameter.get("value")
+    let paramValue = isXml ? parameter.get("value_xml") : parameter ? parameter.get("value") : null
 
     if ( paramValue !== undefined ) {
       let val = !paramValue && !isXml ? "{}" : paramValue
@@ -76,7 +80,7 @@ export default class ParamBody extends Component {
   }
 
   onChange = (value, { isEditBox, isXml }) => {
-    this.setState({value, isEditBox})
+    this.setState({value, isEditBox: true})
     this._onChange(value, isXml)
   }
 
@@ -84,7 +88,8 @@ export default class ParamBody extends Component {
 
   handleOnChange = e => {
     let {consumesValue} = this.props
-    this.onChange(e.target.value.trim(), {isXml: /xml/i.test(consumesValue)})
+    // this.onChange(e.target.value.trim(), {isXml: /xml/i.test(consumesValue)})
+    this.onChange(e, {isXml: /xml/i.test(consumesValue)})
   }
 
   toggleIsEditBox = () => this.setState( state => ({isEditBox: !state.isEditBox}))
@@ -116,7 +121,20 @@ export default class ParamBody extends Component {
       <div className="body-param">
         {
           isEditBox && isExecute
-            ? <TextArea className={ "body-param__text" + ( errors.count() ? " invalid" : "")} value={value} onChange={ this.handleOnChange }/>
+            ? <CodeMirror
+                options={{
+                  mode: {
+                    name: "application/json",
+                    json: true
+                  },
+                  lineWrapping: true,
+                  tabSize: 2,
+                  indentWithTabs: false
+                }}
+                className={ "body-param__text" + ( errors.count() ? " invalid" : "")}
+                defaultValue={value}
+                onChange={ this.handleOnChange }
+              />
             : (value && <HighlightCode className="body-param__example"
                                value={ value }/>)
         }

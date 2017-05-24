@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from "react"
 import win from "core/window"
 
-
 export default class ParameterRow extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -11,7 +10,8 @@ export default class ParameterRow extends Component {
     isExecute: PropTypes.bool,
     onChangeConsumes: PropTypes.func.isRequired,
     specSelectors: PropTypes.object.isRequired,
-    pathMethod: PropTypes.array.isRequired
+    pathMethod: PropTypes.array.isRequired,
+    parent: PropTypes.object.isRequired
   }
 
   constructor(props, context) {
@@ -88,14 +88,13 @@ export default class ParameterRow extends Component {
     let value = parameter ? parameter.get("value") : ""
 
     return (
-      <tr>
+      <tr className={`swagger-${param.get("in")}`}>
         <td className="col parameters-col_name">
           <div className={required ? "parameter__name required" : "parameter__name"}>
             { param.get("name") }
             { !required ? null : <span style={{color: "red"}}>&nbsp;*</span> }
           </div>
           <div className="parаmeter__type">{ param.get("type") } { itemType && `[${itemType}]` }</div>
-          <div className="parameter__in">({ param.get("in") })</div>
         </td>
 
         <td className="col parameters-col_description">
@@ -108,7 +107,7 @@ export default class ParameterRow extends Component {
                               getComponent={getComponent}
                               value={ value }
                               required={ required }
-                              description={param.get("description") ? `${param.get("name")} - ${param.get("description")}` : `${param.get("name")}`}
+                              description={param.get("required") ? "(required)" : ""}
                               onChange={ this.onChangeWrapper }
                               schema={ param }/>
           }

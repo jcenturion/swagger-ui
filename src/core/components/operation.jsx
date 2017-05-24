@@ -39,7 +39,7 @@ export default class Operation extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      tryItOutEnabled: false
+      tryItOutEnabled: true
     }
   }
 
@@ -77,7 +77,7 @@ export default class Operation extends React.Component {
 
   isShown =() => {
     let { layoutSelectors, isShownKey } = this.props
-    return layoutSelectors.isShown(isShownKey, false ) // Here is where we set the default
+    return layoutSelectors.isShown(isShownKey, true) // Here is where we set the default
   }
 
   onTryoutClick =() => {
@@ -146,7 +146,7 @@ export default class Operation extends React.Component {
 
     return (
         <div className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} id={isShownKey} >
-          <div className={`opblock-summary opblock-summary-${method}`} onClick={this.toggleShown} >
+          <div className={`opblock-summary opblock-summary-${method}`}>
             <span className="opblock-summary-method">{method.toUpperCase()}</span>
             <span className={ deprecated ? "opblock-summary-path__deprecated" : "opblock-summary-path" } >
               <span>{path}</span>

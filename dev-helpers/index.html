@@ -75,28 +75,23 @@ window.onload = function() {
   window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
   // Build a system
   const ui = SwaggerUIBundle({
-    url: "http://petstore.swagger.io/v2/swagger.json",
+    url: "https://gist.githubusercontent.com/jcenturion/bacfc42e7e91a7cc1a4a9db78ad60cb4/raw/0ba2f376632cb90e8001fdf4d1526cbb06beb902/api.yml",
     dom_id: '#swagger-ui',
     presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    plugins: [
-      SwaggerUIBundle.plugins.DownloadUrl
-    ],
-    layout: "StandaloneLayout"
+      SwaggerUIBundle.presets.apis
+    ]
   })
 
   window.ui = ui
 
-  ui.initOAuth({
-    clientId: "your-client-id",
-    clientSecret: "your-client-secret-if-required",
-    realm: "your-realms",
-    appName: "your-app-name",
-    scopeSeparator: "-",
-    additionalQueryStringParams: {test: "hello"}
-  })
+  // ui.initOAuth({
+  //   clientId: "your-client-id",
+  //   clientSecret: "your-client-secret-if-required",
+  //   realm: "your-realms",
+  //   appName: "your-app-name",
+  //   scopeSeparator: "-",
+  //   additionalQueryStringParams: {test: "hello"}
+  // })
 }
 </script>
 </body>

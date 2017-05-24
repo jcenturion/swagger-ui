@@ -49,19 +49,7 @@ export default class Operations extends React.Component {
                 <div className={showTag ? "opblock-tag-section is-open" : "opblock-tag-section"} key={"operation-" + tag}>
 
                   <h4 className={!tagDescription ? "opblock-tag no-desc" : "opblock-tag" }>
-                    <span onClick={() => layoutActions.show(isShownKey, !showTag)}>{tag}</span>
-
-                    { !tagDescription ? null :
-                        <small onClick={() => layoutActions.show(isShownKey, !showTag)} >
-                          { tagDescription }
-                        </small>
-                    }
-
-                    <button className="expand-operation" title="Expand operation" onClick={() => layoutActions.show(isShownKey, !showTag)}>
-                      <svg className="arrow" width="20" height="20">
-                        <use xlinkHref={showTag ? "#large-arrow-down" : "#large-arrow"} />
-                      </svg>
-                    </button>
+                    <span>{tag}</span>
                   </h4>
 
                   <Collapse isOpened={showTag}>

@@ -39,13 +39,6 @@ export default class Responses extends React.Component {
       <div className="responses-wrapper">
         <div className="opblock-section-header">
           <h4>Responses</h4>
-            <label>
-              <span>Response content type</span>
-              <ContentType value={producesValue}
-                         onChange={this.onChangeProducesWrapper}
-                         contentTypes={produces}
-                         className="execute-content-type"/>
-                     </label>
         </div>
         <div className="responses-inner">
           {
@@ -60,12 +53,6 @@ export default class Responses extends React.Component {
           }
 
           <table className="responses-table">
-            <thead>
-              <tr className="responses-header">
-                <td className="col col_header response-col_status">Code</td>
-                <td className="col col_header response-col_description">Description</td>
-              </tr>
-            </thead>
             <tbody>
               {
                 responses.entrySeq().map( ([code, response]) => {
